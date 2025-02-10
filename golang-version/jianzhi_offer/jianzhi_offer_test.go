@@ -2,6 +2,7 @@ package jianzhi_offer
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -125,5 +126,117 @@ func TestQueueImplementInStack(t *testing.T) {
 			v := stackItem.DeleteHead()
 			assert.Equal(t, testCase[i].result[jj], v)
 		}
+	}
+}
+
+func TestFibonacciInCycle(t *testing.T) {
+	var testCase = []struct {
+		input int
+		ret   int
+	}{
+		{0, 0},
+		{1, 1},
+		{2, 1},
+		{3, 2},
+		{4, 3},
+		{5, 5},
+		{6, 8},
+		{7, 13},
+		{8, 21},
+	}
+	for i := 0; i < len(testCase); i++ {
+		ret := FibonacciInCycle(testCase[i].input)
+		assert.Equal(t, ret, testCase[i].ret)
+	}
+}
+
+func TestQinWaJump(t *testing.T) {
+	var testCase = []struct {
+		input int
+		ret   int
+	}{
+		{0, 0},
+		{1, 1},
+		{2, 2},
+		{3, 3},
+		{4, 5},
+		{5, 8},
+		{6, 13},
+		{7, 21},
+		{8, 34},
+	}
+	for i := 0; i < len(testCase); i++ {
+		ret := QinWaJump(testCase[i].input)
+		assert.Equal(t, testCase[i].ret, ret)
+	}
+}
+
+func TestBinarySearch(t *testing.T) {
+	var testCase = []struct {
+		input []int
+		dst   int
+		ret   int
+	}{
+		{[]int{1, 2, 3, 4, 5, 6}, 4, 3},
+		{[]int{1, 2, 3, 4, 5, 6}, 100, -1},
+		{[]int{1, 2, 3, 4, 5, 6}, 6, 5},
+		{[]int{1, 2, 3, 4, 5, 6}, 1, 0},
+	}
+
+	for i := 0; i < len(testCase); i++ {
+		ret := BinarySearch(testCase[i].input, testCase[i].dst)
+		assert.Equal(t, testCase[i].ret, ret)
+
+	}
+}
+
+func TestBubbleSort(t *testing.T) {
+	var testCase = []struct {
+		input []int
+		ret   []int
+	}{
+		{[]int{1, 6, 2, 8, 3, 10, 9, 7}, []int{1, 2, 3, 6, 7, 8, 9, 10}},
+		{[]int{1, 2, 3, 4, 5, 6}, []int{1, 2, 3, 4, 5, 6}},
+		{[]int{2, 1}, []int{1, 2}},
+		{[]int{1}, []int{1}},
+	}
+	for i := 0; i < len(testCase); i++ {
+		ret := BubbleSort(testCase[i].input)
+		t.Logf("ret: %v", ret)
+		assert.Equal(t, reflect.DeepEqual(ret, testCase[i].ret), true)
+	}
+}
+
+func TestInsertSort(t *testing.T) {
+	var testCase = []struct {
+		input []int
+		ret   []int
+	}{
+		{[]int{1, 6, 2, 8, 3, 10, 9, 7}, []int{1, 2, 3, 6, 7, 8, 9, 10}},
+		{[]int{1, 2, 3, 4, 5, 6}, []int{1, 2, 3, 4, 5, 6}},
+		{[]int{2, 1}, []int{1, 2}},
+		{[]int{1}, []int{1}},
+	}
+	for i := 0; i < len(testCase); i++ {
+		ret := InsertSort(testCase[i].input)
+		t.Logf("ret: %v", ret)
+		assert.Equal(t, reflect.DeepEqual(ret, testCase[i].ret), true)
+	}
+}
+
+func TestChoseSort(t *testing.T) {
+	var testCase = []struct {
+		input []int
+		ret   []int
+	}{
+		{[]int{1, 6, 2, 8, 3, 10, 9, 7}, []int{1, 2, 3, 6, 7, 8, 9, 10}},
+		{[]int{1, 2, 3, 4, 5, 6}, []int{1, 2, 3, 4, 5, 6}},
+		{[]int{2, 1}, []int{1, 2}},
+		{[]int{1}, []int{1}},
+	}
+	for i := 0; i < len(testCase); i++ {
+		ret := ChoseSort(testCase[i].input)
+		t.Logf("ret: %v", ret)
+		assert.Equal(t, reflect.DeepEqual(ret, testCase[i].ret), true)
 	}
 }
