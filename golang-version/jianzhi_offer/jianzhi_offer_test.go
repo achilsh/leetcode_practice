@@ -106,3 +106,24 @@ func TestReverseSingleLink(t *testing.T) {
 		}
 	}
 }
+
+func TestQueueImplementInStack(t *testing.T) {
+	var testCase = []struct {
+		input  []int
+		result []int
+	}{
+		{[]int{1, 2, 3}, []int{1, 2, 3}},
+	}
+
+	for i := 0; i < len(testCase); i++ {
+		stackItem := NewQueueImplementInStack()
+		for jj := 0; jj < len(testCase[i].input); jj++ {
+			stackItem.AppendTail(testCase[i].input[jj])
+		}
+		//
+		for jj := 0; jj < len(testCase[i].result); jj++ {
+			v := stackItem.DeleteHead()
+			assert.Equal(t, testCase[i].result[jj], v)
+		}
+	}
+}
