@@ -78,3 +78,31 @@ func TestReplaceSpaceInStr(t *testing.T) {
 		assert.Equal(t, ret, testCase[i].ret)
 	}
 }
+
+func TestReverseSingleLink(t *testing.T) {
+	var testCase = []struct {
+		input  []int
+		result []int
+	}{
+		{[]int{1, 2, 3, 4, 5}, []int{5, 4, 3, 2, 1}},
+		{nil, nil},
+		{[]int{1}, []int{1}},
+		{[]int{1, 2}, []int{2, 1}},
+	}
+
+	for i := 0; i < len(testCase); i++ {
+		s1 := NewSingleLinkBySlice(testCase[i].input)
+		assert.NotEqual(t, s1, nil)
+
+		s2 := ReverseSingleLink(s1)
+		assert.NotEqual(t, s2, nil)
+
+		r2 := IterSingleLink(s2)
+		assert.Equal(t, len(testCase[i].input), len(r2))
+		//fmt.Println(testCase[i].result)
+		//fmt.Println(r2)
+		for j := 0; j < len(r2); j++ {
+			assert.Equal(t, testCase[i].result[j], r2[j])
+		}
+	}
+}
